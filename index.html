@@ -1262,79 +1262,53 @@
       }
     }
 
-    /* Hero skill cards (glass tiles) */
-    .hero-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.7rem;
-      width: 100%;
+    /* Hero skill title sequence (moderate, proportionate) */
+    .hero-skill-swap {
+      position: relative;
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0 0.25rem 0.4rem;
+      overflow: hidden;
+      text-align: center;
+      max-width: 100%;
     }
 
-    @media (max-width: 767px) {
-      .hero-cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .hero-card {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      padding: 0.8rem 0.95rem;
-      border-radius: 14px;
-      border: 1px solid rgba(245, 240, 235, 0.12);
-      background: rgba(15, 15, 15, 0.5);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      cursor: default;
-      user-select: none;
-      -webkit-user-select: none;
-      text-align: start;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, transform 0.3s ease;
-    }
-
-    .hero-card svg {
-      width: 26px;
-      height: 26px;
-      flex-shrink: 0;
-      color: #FFC324;
-      transition: transform 0.3s ease;
-    }
-
-    .hero-card:hover {
-      border-color: rgba(255, 195, 36, 0.55);
-      background: rgba(255, 195, 36, 0.09);
-      box-shadow: 0 0 26px rgba(255, 195, 36, 0.2), inset 0 0 14px rgba(255, 195, 36, 0.05);
-      transform: translateY(-4px);
-    }
-
-    .hero-card:hover svg {
-      transform: translateX(-3px);
-    }
-
-    .hero-card-labels {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
+    .hero-skill-swap-word {
+      display: inline-block;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 800;
+      font-size: clamp(1.4rem, 4.2vw, 2.4rem);
       line-height: 1.2;
-      min-width: 0;
-    }
-
-    .hero-card-en {
-      font-size: 0.95rem;
-      font-weight: 700;
       color: #f5f0eb;
-      font-family: 'Cairo', sans-serif;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
     }
 
-    .hero-card-ar {
-      font-size: 0.8rem;
-      color: #9a9590;
-      font-family: 'Cairo', sans-serif;
+    .hero-skill-swap-word.show {
+      opacity: 1;
+      transform: none;
     }
 
-    html[dir="rtl"] .hero-card-labels {
-      flex-direction: column-reverse;
+    .hero-skill-swap-wipe {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 2px;
+      background: #FFC324;
+      box-shadow: 0 0 12px rgba(255, 195, 36, 0.6);
+      transform: translateX(-101%);
+    }
+
+    .hero-skill-swap-wipe.go {
+      animation: heroSkillWipe 0.6s cubic-bezier(0.6, 0.05, 0.25, 1) forwards;
+    }
+
+    @keyframes heroSkillWipe {
+      0% { transform: translateX(-101%); }
+      100% { transform: translateX(101%); }
     }
 
     /* Slim modern gallery arrows (glassmorphism) */
@@ -2546,72 +2520,17 @@
           style="font-size:0.9rem; color:#FFC324; letter-spacing:0.3em; text-transform:uppercase; font-weight:500; font-family:'Cairo',sans-serif;">
           Art
           Director &amp; Internal Design</p>
-        <div class="hero-chips hero-cards">
-          <div class="hero-card">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path
-                d="M6 20.25h12M4.5 20.25V4.5a1.5 1.5 0 0 1 1.5-1.5h12a1.5 1.5 0 0 1 1.5 1.5v15.75M6 3.75v.75M18 3.75v.75M6.75 9.75h.008v.008H6.75V9.75Zm0 3.75h.008v.008H6.75V13.5Zm0 3.75h.008v.008H6.75V17.25Z" />
-            </svg>
-            <span class="hero-card-labels">
-              <span class="hero-card-en">Art Director</span>
-              <span class="hero-card-ar">مدير فني</span>
-            </span>
-          </div>
-          <div class="hero-card">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path
-                d="M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z" />
-            </svg>
-            <span class="hero-card-labels">
-              <span class="hero-card-en">Production Design</span>
-              <span class="hero-card-ar">تصميم الإنتاج</span>
-            </span>
-          </div>
-          <div class="hero-card">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
-            </svg>
-            <span class="hero-card-labels">
-              <span class="hero-card-en">3D Design</span>
-              <span class="hero-card-ar">تصميم ثلاثي الأبعاد</span>
-            </span>
-          </div>
-          <div class="hero-card">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path
-                d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
-            </svg>
-            <span class="hero-card-labels">
-              <span class="hero-card-en">Podcast design</span>
-              <span class="hero-card-ar">تصميم بودكاست</span>
-            </span>
-          </div>
-          <div class="hero-card">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path
-                d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-            </svg>
-            <span class="hero-card-labels">
-              <span class="hero-card-en">Theater Works</span>
-              <span class="hero-card-ar">أعمال مسرحية</span>
-            </span>
-          </div>
-          <div class="hero-card">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path
-                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-            </svg>
-            <span class="hero-card-labels">
-              <span class="hero-card-en">Interior Design</span>
-              <span class="hero-card-ar">تصميم داخلي</span>
-            </span>
-          </div>
+        <span style="display:none;">
+          <span data-i18n-key="hero-chip-director">مدير فني</span>
+          <span data-i18n-key="hero-chip-production">تصميم الإنتاج</span>
+          <span data-i18n-key="hero-chip-3d">تصميم ثلاثي الأبعاد</span>
+          <span data-i18n-key="hero-chip-podcast">تصميم بودكاست</span>
+          <span data-i18n-key="hero-chip-theater">أعمال مسرحية</span>
+          <span data-i18n-key="hero-chip-interior">تصميم داخلي</span>
+        </span>
+        <div class="hero-skill-swap" id="heroSkillSwap">
+          <span class="hero-skill-swap-word" id="heroSkillSwapWord" data-i18n-key="hero-chip-production">تصميم الإنتاج</span>
+          <span class="hero-skill-swap-wipe" id="heroSkillWipe"></span>
         </div>
       </div>
     </div>
@@ -2641,7 +2560,7 @@
     </div>
     <div class="relative overflow-hidden reveal services-banner" style="margin:2rem 0; background:#0F0F0F;">
       <img
-        src="https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@47530dad748d78e6cf912f0755f7ace2cb824174/Production%20Design%20%20Art%20Director.jpg"
+        src="https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@7894516e2f5f923486703aff8a44572f7c14c5c2/Production%20Design%20%20Art%20Director_11zon.webp"
         alt="تصميم وتصنيع عناصر المشهد" loading="lazy"
         data-i18n-attr="alt:prod-img-alt"
         style="display:block; width:100%; height:auto; aspect-ratio:1.78; object-fit:contain; -webkit-mask-image:linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 45%, rgba(0,0,0,1) 75%); mask-image:linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 45%, rgba(0,0,0,1) 75%);">
@@ -2663,7 +2582,7 @@
     <div class="relative overflow-hidden reveal services-banner threed-banner"
       style="margin:2rem 0; background:#0F0F0F;">
       <img
-        src="https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@fa2789fa7f3535d1e6b70eb6c35c5cede1df11a0/3D%20Design.jpg"
+        src="https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@7894516e2f5f923486703aff8a44572f7c14c5c2/3D%20Design_11zon.webp"
         alt="تصميم ثلاثي الأبعاد" loading="lazy"
         data-i18n-attr="alt:threed-img-alt"
         style="display:block; width:100%; height:auto; aspect-ratio:1.78; object-fit:contain; -webkit-mask-image:linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 45%, rgba(0,0,0,1) 75%); mask-image:linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 45%, rgba(0,0,0,1) 75%);">
@@ -2683,7 +2602,7 @@
     <div class="relative overflow-hidden reveal services-banner podcast-banner"
       style="margin:2rem 0; background:#0F0F0F;">
       <img
-        src="https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@753592b697184fd896e2e0e7ea18e53ee9f133bc/Podcast%20design.jpg"
+        src="https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@7894516e2f5f923486703aff8a44572f7c14c5c2/Podcast%20design_11zon.webp"
         alt="تصميم بودكاست" loading="lazy"
         data-i18n-attr="alt:podcast-img-alt"
         style="display:block; width:100%; height:auto; aspect-ratio:1.78; object-fit:contain; -webkit-mask-image:linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 45%, rgba(0,0,0,1) 75%); mask-image:linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 45%, rgba(0,0,0,1) 75%);">
@@ -3508,7 +3427,7 @@
       nextBtn: document.getElementById('filmParticipationNext'),
       images: [
         'https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@27032bd3ead3bcf6e018e28d69b86e40a8571693/Gd623qxWQAAeY7n.jpg',
-        'https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@27032bd3ead3bcf6e018e28d69b86e40a8571693/GdKPnYsXAAAjcZ2.jpg',
+        'https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@a07e1e80e2b1767a344e94b762e6ccfd884a03a3/ghrma.webp',
         'https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@27032bd3ead3bcf6e018e28d69b86e40a8571693/Gemini_Generated_Image_hbu3gfhbu3gfhbu3.jpg',
         'https://cdn.jsdelivr.net/gh/Marioo0o0/EHAP-vedio-hero-and-photo@27032bd3ead3bcf6e018e28d69b86e40a8571693/images.jpg',
         'https://cdn.jsdelivr.net/gh/Marioo0o0/Ehap_LOGO@95e1bd22fafae886ffbe85f364ae1c1c0ad5d3ba/1-.png',
@@ -3706,6 +3625,52 @@
         if (btnText) btnText.textContent = isAr ? 'English' : '\u0627\u0644\u0639\u0631\u0628\u064A\u0629';
 
         try { localStorage.setItem('ihab-lang', lang); } catch (e) { }
+
+        restartHeroSwap();
+      }
+
+      var heroSkillKeys = [
+        'hero-chip-production',
+        'hero-chip-3d',
+        'hero-chip-podcast',
+        'hero-chip-theater',
+        'hero-chip-interior',
+        'hero-chip-director'
+      ];
+      var heroIdx = 0, heroTimer = null, heroHold = null;
+
+      function heroSkillText(key) {
+        return document.documentElement.lang === 'ar'
+          ? (originals[key] || '')
+          : (i18n[key] || '');
+      }
+
+      function heroSwapTick() {
+        var el = document.getElementById('heroSkillSwapWord');
+        if (!el) return;
+        el.setAttribute('data-i18n-key', heroSkillKeys[heroIdx]);
+        el.textContent = heroSkillText(heroSkillKeys[heroIdx]);
+        el.classList.remove('show');
+        void el.offsetWidth;
+        el.classList.add('show');
+        var wipe = document.getElementById('heroSkillWipe');
+        if (wipe) {
+          wipe.classList.remove('go');
+          void wipe.offsetWidth;
+          wipe.classList.add('go');
+        }
+        heroIdx = (heroIdx + 1) % heroSkillKeys.length;
+      }
+
+      function restartHeroSwap() {
+        if (heroTimer) clearInterval(heroTimer);
+        if (heroHold) { clearTimeout(heroHold); heroHold = null; }
+        var el = document.getElementById('heroSkillSwapWord');
+        if (!el) return;
+        el.classList.remove('show');
+        heroIdx = 0;
+        heroTimer = setInterval(heroSwapTick, 2600);
+        heroHold = setTimeout(heroSwapTick, 320);
       }
 
       var saved = null;
