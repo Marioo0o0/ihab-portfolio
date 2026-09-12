@@ -2029,6 +2029,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.6);
+      margin-top: 0.28rem;
     }
 
     .shots-grid {
@@ -2456,6 +2457,26 @@
 
       html[dir="ltr"] .services-banner p {
         white-space: pre-line !important;
+      }
+    }
+
+    /* Desktop: tighter, better-weighted banner text (title & desc grouped) */
+    @media (min-width: 768px) {
+      .services-banner .banner-text>h3 {
+        font-size: clamp(1.95rem, 2.8vw, 2.75rem) !important;
+        line-height: 1.25 !important;
+        margin-bottom: 0.85rem !important;
+        min-height: 0 !important;
+        font-weight: 900 !important;
+        letter-spacing: -0.01em;
+      }
+
+      .services-banner .banner-text>p {
+        font-size: clamp(1.05rem, 1.35vw, 1.2rem) !important;
+        line-height: 1.6 !important;
+        max-width: 30rem !important;
+        min-height: 0 !important;
+        font-weight: 400;
       }
     }
   </style>
